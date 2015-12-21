@@ -34,7 +34,7 @@
     alert(getParam('id'));
     var liveMoveEl = document.getElementById('live-move'),
         urlEl = document.getElementById('url-container'),
-        socket = ('', {query: 'id='+getParam('id')}),
+        socket = io('', {query: 'id='+getParam('id')}),
         isMobile = false,
         newID;
     // device detection
