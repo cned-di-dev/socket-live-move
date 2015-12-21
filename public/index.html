@@ -31,10 +31,11 @@
     <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
     <script src="/socket.io/socket.io.js"></script>
     <script type="text/javascript">
-    alert(getParam('id'));
+
     var liveMoveEl = document.getElementById('live-move'),
+        id = getParam('id'),
         urlEl = document.getElementById('url-container'),
-        socket = io('', {query: 'id='+getParam('id')}),
+        socket = io('', {query: 'id='+id}),
         isMobile = false,
         newID;
     // device detection
@@ -55,11 +56,14 @@
 
     socket.on('getMove', function(aigVal){
       console.log('get squareMove : '+ aigVal);
-      liveMoveEl.style.transform = 'rotateX('+-aigVal.aigY*5+'deg) rotateY('+-aigVal.aigX*5+'deg)';
+      liveMoveEl.style.transform = 'rotateX('+-aigVal.aigY*8+'deg) rotateY('+aigVal.aigX*8+'deg)';
     });
     socket.on('setID', function(newID){
       newID = newID;
-      urlEl.innerHTML = window.location.href +'/?id='+newID;
+      if(!id){
+        urlEl.innerHTML = window.location.href +'?id='+newID;
+      }
+
     });
 
 
