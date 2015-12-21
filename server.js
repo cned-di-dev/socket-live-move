@@ -18,31 +18,23 @@ function generateId()
 }
 app.use(express.static('public'));
 
-// Server conf / routes
-app.get("/", function (req, res) {
-  console.log('Request on : /');
-  res.sendFile(publicDir+"/index.html");
-  res.end();
-});
-
-// Server launch
-server.listen(port, function () {
-	console.info(pjson.name +' is running on 127.0.0.1:'+port+' :)');
-});
-
 // Socket EVENTS
 io.on('connection', function(socket){
   var newID;
   if(socket.handshake.query.id){
     newID = socket.handshake.query.id;
+    console.log('Connection using existing ID : '+ newID);
   }
   else {
     newID = generateId();
+    console.log('New ID provided : '+ newID);
   }
   io.emit('setID', newID);
   socket.join(newID);
+  console.log('Joined room : '+ newID);
   socket.on('disconnect', function() {
     socket.leave(newID);
+    console.log('Leaved room : '+ newID);
   });
   socket.on('sendMove', function(aigVal){
     	aigVal.aigX = aigVal.aigX;
@@ -50,4 +42,10 @@ io.on('connection', function(socket){
     	aigVal.aigZ = aigVal.aigZ * 15;
     	io.to(newID).emit('getMove', aigVal);
   });
+});
+
+
+// Server launch
+server.listen(port, function () {
+	console.info(pjson.name +' is running on 127.0.0.1:'+port+' :)');
 });
