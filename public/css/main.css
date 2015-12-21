@@ -1,6 +1,6 @@
 /* --- Common Demo Styles --- */
 
-@import "https://raw.githubusercontent.com/alsacreations/KNACSS/master/css/knacss.css";
+@import url("https://raw.githubusercontent.com/alsacreations/KNACSS/master/css/knacss.css");
 
 body {
   background: #111;
