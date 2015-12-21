@@ -2,53 +2,22 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Live Move</title>
+    <title>Live Move | CNED Demo</title>
     <meta name="viewport" content="initial-scale=1,width=device-width">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
-    <style media="screen">
-      body {
-        background: #111;
-        font-family: sans-serif;
-      }
-      body.mobile #live-move {
-        display: none;
-      }
-      body.mobile #url-container {
-        display: none;
-      }
-      body.mobile #mobile-msg {
-        display: block;
-      }
-      #mobile-msg {
-       display: none;
-       color: #fff;
-       font-size: 24px;
-       text-align: center;
-     }
-      #live-move {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 300px;
-        height: 300px;
-        margin-left: -150px;
-        margin-top: -150px;
-        display: block;
-      }
-      #url-container {
-        color: #fff;
-        font-size: 24px;
-        display: block;
-        text-align: center;
-      }
-    </style>
+    <link rel="stylesheet" href="/css/main.css" media="screen" charset="utf-8">
   </head>
   <body>
+
+     <!-- Demo content -->
 
     <img id="live-move" src="http://lorempixel.com/300/300/" alt="" />
     <span id="url-container" class="text-center"></span>
     <span id="mobile-msg" class="text-center">Le mobile a pris le contrôle.</span>
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+
+    <!-- /End Demo Content -->
+
+
+    <!-- Demo Script -->
     <script src="/socket.io/socket.io.js"></script>
     <script type="text/javascript">
     // device detection
@@ -87,10 +56,7 @@
       if(!isMobile){
         urlEl.innerHTML = window.location.href +'?id='+newID;
       }
-
     });
-
-
     function getParam(param) {
     	var vars = {};
     	window.location.href.replace(
@@ -106,5 +72,6 @@
     	return vars;
     }
     </script>
+    <!-- /End Demo Script -->
   </body>
 </html>
