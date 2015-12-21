@@ -22,7 +22,6 @@ app.use(express.static('public'));
 io.on('connection', function(socket){
   var newID;
   console.log('socket.handshake.query.id : ' + socket.handshake.query.id);
-  console.log(socket.handshake);
   if(socket.handshake.query.id !== 'null'){
     newID = socket.handshake.query.id;
     console.log('Connection using existing ID : '+ newID);
