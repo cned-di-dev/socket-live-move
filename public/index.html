@@ -8,6 +8,18 @@
       body {
         background: #111;
       }
+      body.mobile #live-move {
+        display: none;
+      }
+      body.mobile #url-container {
+        display: none;
+      }
+      body.mobile #mobile-msg {
+        display: block;
+      }
+      #mobile-msg {
+       display: none;
+     }
       #live-move {
         position: absolute;
         top: 50%;
@@ -21,6 +33,7 @@
       #url-container {
         color: #fff;
         font-size: 24px;
+        display: block;
       }
     </style>
   </head>
@@ -28,14 +41,17 @@
 
     <img id="live-move" src="http://lorempixel.com/300/300/" alt="" />
     <span id="url-container" class="text-center"></span>
+    <span id="mobile-msg" class="text-center">Le mobile a pris le contrôle.</span>
     <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
     <script src="/socket.io/socket.io.js"></script>
     <script type="text/javascript">
 
     var liveMoveEl = document.getElementById('live-move'),
+        bodyEl = liveMoveEl.parentNode,
         id = getParam('id'),
         urlEl = document.getElementById('url-container'),
-        socket = io('', {query: 'id='+id}),
+        socketParam = isMobile?{query: 'id='+id}:{},
+        socket = io('', socketParam),
         isMobile = false,
         newID;
     // device detection
@@ -44,6 +60,7 @@
     // Get device motion
 
     if(isMobile) {
+      bodyEl.className = 'mobile';
       window.ondevicemotion = function(ev){
        var aigX = ev.accelerationIncludingGravity.x,
            aigZ = ev.accelerationIncludingGravity.z,
@@ -60,7 +77,7 @@
     });
     socket.on('setID', function(newID){
       newID = newID;
-      if(!id){
+      if(!isMobile){
         urlEl.innerHTML = window.location.href +'?id='+newID;
       }
 
