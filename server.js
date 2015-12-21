@@ -29,8 +29,9 @@ io.on('connection', function(socket){
   else {
     newID = generateId();
     console.log('New ID provided : '+ newID);
+    io.emit('setID', newID);
   }
-  io.emit('setID', newID);
+
   socket.join(newID);
   console.log('Joined room : '+ newID);
   socket.on('disconnect', function() {
