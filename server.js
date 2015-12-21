@@ -22,7 +22,7 @@ app.use(express.static('public'));
 io.on('connection', function(socket){
   var newID;
   console.log('socket.handshake.query.id : ' + socket.handshake.query.id);
-  if(typeof(socket.handshake.query.id) !== undefined){
+  if(typeof(socket.handshake.query.id) !== 'undefined'){
     newID = socket.handshake.query.id;
     console.log('Connection using existing ID : '+ newID);
   }
