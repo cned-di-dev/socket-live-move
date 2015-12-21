@@ -54,7 +54,7 @@
     });
     socket.on('setID', function(newID){
       newID = newID;
-      urlEl.html(window.location.href +'/?id='+newID);
+      urlEl.innerHTML = window.location.href +'/?id='+newID;
     });
     </script>
   </body>
