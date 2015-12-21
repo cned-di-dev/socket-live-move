@@ -66,7 +66,6 @@
            aigZ = ev.accelerationIncludingGravity.z,
            aigY = ev.accelerationIncludingGravity.y;
          // Send it to the server
-         console.log('send squareMove : '+ aigX);
          socket.emit('sendMove', {'aigZ' : aigZ, 'aigY' : aigY, 'aigX' : aigX});
       };
     }
