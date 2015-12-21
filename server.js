@@ -35,7 +35,7 @@ server.listen(port, function () {
 io.on('connection', function(socket){
   var newID;
   if(socket.handshake.query.id){
-    newID = socket.handshake.query.player;
+    newID = socket.handshake.query.id;
   }
   else {
     newID = generateId();
