@@ -10,7 +10,9 @@
 
      <!-- Demo content -->
 
-    <img id="live-move" src="http://lorempixel.com/300/300/" alt="" />
+
+    <span id="live-move"></span>
+
     <span id="url-container" class="text-center"></span>
     <span id="mobile-msg" class="text-center">Le mobile a pris le contrôle.</span>
 
@@ -49,7 +51,8 @@
 
     socket.on('getMove', function(aigVal){
       console.log('get squareMove : '+ aigVal);
-      liveMoveEl.style.transform = 'rotateX('+-aigVal.aigY*8+'deg) rotateY('+aigVal.aigX*8+'deg)';
+      liveMoveEl.style.marginTop = aigVal.aigY*10+'px';
+      liveMoveEl.style.marginLeft = aigVal.aigX*10+'px';
     });
     socket.on('setID', function(newID){
       newID = newID;
