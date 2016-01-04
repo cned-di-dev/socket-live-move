@@ -43,12 +43,12 @@
       bodyEl.className = 'mobile';
       window.addEventListener("deviceorientation", handleOrientation, true);
       function handleOrientation(event) {
-        var absolute = event.absolute;
-        var alpha    = event.alpha;
-        var beta     = event.beta;
-        var gamma    = event.gamma;
+        var absolute = event.absolute,
+            alpha    = event.alpha,
+            beta     = event.beta,
+            gamma    = event.gamma;
         console.log(absolute, alpha, beta, gamma);
-        //socket.emit('sendMove', {'aigZ' : aigZ, 'aigY' : aigY, 'aigX' : aigX});
+        socket.emit('sendMove', {'absolute' : absolute, 'alpha' : alpha, 'beta' : beta, 'gamma' : gamma});
       }
       // window.ondevicemotion = function(ev){
       //   if(sendDeviceMotion){
@@ -66,10 +66,10 @@
 
     }
 
-    socket.on('getMove', function(aigVal){
-      console.log('get squareMove : '+ aigVal);
-      liveMoveEl.style.marginTop = aigVal.aigY*100+'px';
-      liveMoveEl.style.marginLeft = aigVal.aigX*100+'px';
+    socket.on('getMove', function(event){
+      console.log('get squareMove : '+ event);
+      // liveMoveEl.style.marginTop = aigVal.aigY*100+'px';
+      // liveMoveEl.style.marginLeft = aigVal.aigX*100+'px';
     });
     socket.on('setID', function(newID){
       newID = newID;
