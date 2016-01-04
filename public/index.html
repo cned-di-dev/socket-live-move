@@ -33,20 +33,37 @@
         urlEl = document.getElementById('url-container'),
         socketParam = isMobile?{query: 'id='+id}:{},
         socket = io('', socketParam),
-        newID;
+        newID,
+        sendDeviceMotion = true;
 
     console.log(id, socketParam);
       // Get device motion
 
     if(isMobile) {
       bodyEl.className = 'mobile';
-      window.ondevicemotion = function(ev){
-       var aigX = ev.acceleration.x,
-           aigZ = ev.acceleration.z,
-           aigY = ev.acceleration.y;
-         // Send it to the server
-         socket.emit('sendMove', {'aigZ' : aigZ, 'aigY' : aigY, 'aigX' : aigX});
-      };
+      window.addEventListener("deviceorientation", handleOrientation, true);
+      function handleOrientation(event) {
+        var absolute = event.absolute;
+        var alpha    = event.alpha;
+        var beta     = event.beta;
+        var gamma    = event.gamma;
+        console.log(absolute, alpha, beta, gamma);
+        //socket.emit('sendMove', {'aigZ' : aigZ, 'aigY' : aigY, 'aigX' : aigX});
+      }
+      // window.ondevicemotion = function(ev){
+      //   if(sendDeviceMotion){
+      //     sendDeviceMotion = !sendDeviceMotion;
+      //     setTimeout(function () {
+      //
+      //     }, 100);
+      //     var aigX = ev.accelerationIncludingGravity.x,
+      //         aigZ = ev.accelerationIncludingGravity.z,
+      //         aigY = ev.accelerationIncludingGravity.y;
+      //       // Send it to the server
+      //
+      //    };
+      //   }
+
     }
 
     socket.on('getMove', function(aigVal){
