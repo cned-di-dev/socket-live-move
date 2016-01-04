@@ -41,9 +41,9 @@
     if(isMobile) {
       bodyEl.className = 'mobile';
       window.ondevicemotion = function(ev){
-       var aigX = ev.accelerationIncludingGravity.x,
-           aigZ = ev.accelerationIncludingGravity.z,
-           aigY = ev.accelerationIncludingGravity.y;
+       var aigX = ev.acceleration.x,
+           aigZ = ev.acceleration.z,
+           aigY = ev.acceleration.y;
          // Send it to the server
          socket.emit('sendMove', {'aigZ' : aigZ, 'aigY' : aigY, 'aigX' : aigX});
       };
