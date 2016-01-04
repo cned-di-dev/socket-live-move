@@ -38,9 +38,11 @@ io.on('connection', function(socket){
     socket.leave(newID);
     console.log('Leaved room : '+ newID);
   });
-  socket.on('sendMove', function(event){
-
-    	io.to(newID).emit('getMove', event);
+  socket.on('sendMove', function(aigVal){
+    	aigVal.aigX = aigVal.aigX;
+    	aigVal.aigY = aigVal.aigY;
+    	aigVal.aigZ = aigVal.aigZ * 15;
+    	io.to(newID).emit('getMove', aigVal);
   });
 });
 
