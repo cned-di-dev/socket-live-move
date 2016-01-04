@@ -67,7 +67,7 @@
     }
 
     socket.on('getMove', function(event){
-      console.log('get squareMove : '+ event);
+      console.log('abs : '+ event.absolute, 'alpha : '+ event.alpha, 'beta : '+ event.beta, 'gamma : '+ event.gamma);
       // liveMoveEl.style.marginTop = aigVal.aigY*100+'px';
       // liveMoveEl.style.marginLeft = aigVal.aigX*100+'px';
     });
